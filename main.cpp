@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <string>
+#include <cstdlib>
 #include <iostream>
 
 using namespace std;
@@ -22,10 +23,42 @@ public:
     }
 };
 
+void solve() {
+    string S;
+    cin >> S;
+
+    int N = S.size();
+    cout << "The length of S is: " << N << endl;
+
+    int a = 0, b = N - 1;
+    while (a <= b) {
+        bool left = false;
+        for (int i = 0; a + i <= b; i++) {
+            if (S[a + i] < S[b - i]) {
+                left = true;
+                break;
+            } else if (S[a + i] > S[b - i]) {
+                left = false;
+                break;
+            }
+        }
+        if (left)
+            cout << S[a++];
+        else
+            cout << S[b--];
+    }
+    cout << endl;
+}
+
+//int main(int argc, char** argv) {
+//    cout << CCompareStringNoCase()("hello", "world") << endl;
+//    cout << CCompareStringNoCase()("world", "hello") << endl;
+//    cout << CCompareStringNoCase()("a", "B") << endl;
+//    cout << ('a' < 'B') << endl;
+//    return 0;
+//}
+
 int main(int argc, char** argv) {
-    cout << CCompareStringNoCase()("hello", "world") << endl;
-    cout << CCompareStringNoCase()("world", "hello") << endl;
-    cout << CCompareStringNoCase()("a", "B") << endl;
-    cout << ('a' < 'B') << endl;
+    solve();
     return 0;
 }
